@@ -1,0 +1,263 @@
+---
+title: "TWITTER TRENDS ANALYSIS USING TOPIC MODELLING"
+author: "Alex Mwangi"
+date: "1/30/2019"
+output:
+  word_document:
+    reference_docx: TEMPLATE.docx
+  html_document:
+    df_print: paged
+csl: apa.csl
+bibliography: library.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# CHAPTER ONE
+# INTRODUCTION
+
+## 1.1 Background of the Study
+
+Since the invention of the internet over two decades ago, the world has experienced an unprecedented increase in the amount of information generated. Most of this information is in text format. Exploring this data manually would require much effort and would be too time consuming. This has led to a lot of research in the field of text mining to assist users in gaining insights from the ever growing textual data. Topic Modelling (TM) is a text mining method that has gained prominence in recent years. Topic modelling has shown to be able to give insights on huge corpus of textual data and hence improving exploration of unknown data, as an alternative to a traditional search engine.
+
+Topic modelling was developed as an alternative to keyword search to enhance the exploration of text data collections[@Deerwester]. TM derives latent topics and patterns from textual data.TM has proven effective in summarizing large amounts of information and  has been proposed as a solution to make long conversations, like microblogs, more approachable. This statistical model consists of the topics that appear in the data presented as a group of keywords sorted in their influence in forming the topic. TM also contain probabilities of each topic occurring in each of the document which can be used to filter all posts containing a particular topic.
+
+Social Networking Sites(SNS) like Facebook and Twitter are a recent phenomenon that has transformed many aspects of our daily lives. Every second, on average, users post around 6000 tweets, this translates to 350,000 tweets per minute and 500 million tweets per day^1^.[Internet Live Stats](https://www.statista.com/statistics/282087/number-of-monthly-active-twitter-users/)
+
+Twitter has become an important source of information for a diverse spectrum of users. People use Twitter to gather real-time news, follow events of interest and read updates by people they follow. Twitter is increasingly used for communicating breaking news, eye witness accounts, product marketing, product reviews, dissemination of news and organizing large groups of people.
+
+Twitter users have become accustomed to receiving timely updates on important events of global or local value. For instance, Twitter was used to propagate information in many crisis events such as the terrorists attack on the Dusit Complex in Kenya and the aftermath of the Kenyan elections in 2017.Also many organizations and celebrities use their Twitter accounts to connect to customers and fans.
+
+Being a popular microblogging and Social Networking Site, Twitter presents many opportunities for research in Natural Language processing (NLP) and machine learning[@Benhardus2013]. One such aspect is trending topics, highlighted on Twitter's home page. They represent what is currently popular in users' tweets. Studying the characteristics and content of these tweets has become important for a number of things such as breaking news detection, personalized message recommendation , friends recommendation, sentiment analysis and others.
+
+It is important to sieve through a huge amount of social media texts to extract meaningful information especially during any crisis and emergency situation. Topic Models have the ability to summarize, explore and index large text document collections and can be used for this purpose(
+Manna, S., & Phongpanangam, O. (2018)).
+
+
+## 1.2 Statement of the Problem
+
+## 1.2.1 NLP Challenges
+
+Length restrictions of microblogged messages creates syntactic and structural conventions not seen in traditional corpora. The size of the Twitter network also produces a continuously changing and dynamic corpus. Twitter data presents several challenges compared to traditional natural language processing technologies such as:
+
+* **Obscure Language and grammar:** Twitter messages often lack proper punctuation and grammar. Tweets usually include shortened words and URLs. They also contain abbreviations including internet slang such as "IRL" for "in real life".
+
+* **Message length:** The short messages contain very little grammatical redundancy.
+
+* **Locale-specific references:** Messages usually refer to specific locations, events and other named entities. Thus, one cannot rely on pre-defined entity lists or complex named entity recognition methods.
+
+In this research i will explore the use of Topics models for processing Twitter data. Topic models were originally developed for analyzing the semantic content of large document corpora. I propose that the family of topic models is particularly suited for analyzing Twitter data for the following reasons:
+
+* **Bag of words:** Topic Models are usually "bag-of-words" models, meaning that they do not rely on the syntactic structure or word order in the language. This makes them especially suited to handle the obscure language and irregular grammar contained in Twitter posts.
+
+* **Latent variables:** Topic models are able to infer latent (or hidden) connections between elements in data. This makes them more sturdy in handling misspellings, acronyms and other idiosyncrasies in Twitter posts.
+
+* **Representation:** Topic models represent statistical knowledge as homogeneous numerical vectors such as probability distributions. This makes them suitable for comparisons, visualization as well a complex modelling such as clustering.
+
+* **Adaptability:** Because of their unsupervised nature Topic models can be easily retrained on a text corpus for a particular domain using other available text. 
+
+## 1.3 Motivation of the Study
+
+Microblogging sites such as Twitter have become important communication tools for people across the globe. As these sites continue to grow, important events in the society are increasingly not found in headlines of traditional media institutions, but in the activity of ordinary individuals. The identification of trending topics utilizes social media to provide an overview of topics and issues currently popular within user posts in the online community.
+
+Researchers wish to use messages posted by users to infer users’ interests, model social relationships, track news stories and identify emerging topics. Companies want to use the messages posted to gain a competitive advantage, learn from their customers, better target marketing efforts and infer customers’ sentiment. Topic models are powerful tools to understand latent text patterns in the messages.
+
+
+## 1.4 Main Objective
+
+The research proposes to implement a topic model of Twitter trending topics.
+
+
+## 1.4.1 Specific Objectives
+
+* To investigate how topic models can be applied to microblog posts.
+
+* To establish the appropriate text preprocessing techniques and topic modelling algorithms to apply to microblog posts.
+
+* To design and develop a topic model of Twitter trending topics.
+
+* To test and validate the effectiveness of the topic model for extracting the relevant topics from Twitter trending topics.
+
+
+
+## 1.4.2 Research Questions
+
+*  How can topic models be applied to microblog posts?
+
+* What are the appropriate text preprocessing and topic modelling algorithms that can be applied to microblog posts?
+
+* Which is the appropriate topic model for Twitter trending topics.
+
+*  How effective is the topic model in identifying the relevant topics?
+
+## 1.5 Significance of the Study
+
+The findings of this research will be of great significance to several stakeholders:-
+
+### 1.5.1 Social Scientists
+
+Historically, most social science has focused on either human coding or dictionary methods that require high levels of pre-analysis making them very expensive. This problem is aggravated by the ever increasing volume and variety of unstructured text. Adopting computer assisted methods like topic modelling would augment and amplify their social science analysis.
+
+### 1.5.2 Companies
+
+Companies can benefit greatly from this study because their customers usually use Twitter to voice their sentiments as in the case of product launches and complaints or compliments about a product. Topic modelling can help them sieve through a huge amount of posts in a short time to discover which topics their customers are discussing.
+
+### 1.5.3 Government
+
+People use Twitter to get updates and post information during crisis situations and events of national significance. The user posts contain valuable information about events, places and people of interest. This research can help the government extract this valuable information in a short time which is critical especially in emergency situations.
+
+### 1.5.4 Other Researchers
+
+The study will benefit other scholars interested in topic modelling of short texts. They will know the best preprocessing techniques and the optimal algorithms to apply in these situations.
+
+
+## 1.6X Scope of the Study
+
+The purpose of this study is to derive topics from Twitter posts on a trending topic. The data will be obtained from tweets sampled from the Twitter search API.
+
+
+# CHAPTER TWO
+# LITERATURE REVIEW
+
+## 2.1 Introduction
+
+This chapter focuses on the previous studies done in the area of study. Literature will be reviewed in relation to the specific objectives of the study. The review is divided into theoretical and empirical review.
+
+## 2.2 Theoretical review
+
+### 2.2.1 Evolution of Topic Models
+
+Topic models identify hidden topics within a corpus of text documents. Topic models are called generative models because they assume that observable data is generated by the joint probabilities of variables that are identified as the topics. LDA, one of the most popular topic model, is a Bayesian two-tiered mixture model that identifies word co-occurrence patterns that are identified as the topics.
+
+### 2.2.2 LDA
+
+In general, there are two approaches to computer assisted text analysis: natural language processing (NLP) and statistical-based methods such as topic models[@Hofmann2001]. Unlike NLP models that tag parts-of-speech and grammatical structure, statistical based models are largely based on the "bag-of-words" (BoW) assumption. In BoW models, collections of text documents are cast into a document term matrix (DTM), that counts the occurrence of each word (columns) for each document (rows). 
+
+The BoW approach prioritizes simplicity and statistical properties at the expense of word order. Without accounting for word order, BoW models perform poorly short texts like question-and-answer. However, for large text corpus, the BoW assumption provides a richer set of statistical algorithms by the assumption that words are exchangeable within each document, i.e., their order does not affect their probability under the model[@Blei]. This assumption is a simplification that aids statistical-based methods in identifying semantic themes in a large enough collection of inter-related documents.
+
+An early application of topic models was dimensionality reduction in large text corpora. [@Deerwester] presented one of the earliest predecessor models, latent semantic indexing (LSI), by applying singular value decomposition (SVD), a linear algebra dimensionality reduction technique, to reduce the document term matrix to its latent factors. [@Landauer] extended the LSI model to create the latent semantic analysis model (LSA). These models can be improved further by substituting term-frequency inverse document frequencies (TF-IDF) in place of raw term counts[@Wesslen2018]. However, [@Hofmann2001] showed that LSA, which stem from linear algebra and performs singular value decomposition of co-occurrence tables, relied on the Gaussian distribution which could not be justified for word count. LSA could also not account for polsemy, the multiple uses of words in different contexts.
+
+These pioneering models set the stage for [@Blei2003] to build the LDA model. The main improvement in LDA was the a inclusion of a probabilistic model at the document level, thus assuming documents are a mixture of topics. In pLSI there is no generative probabilistic model for documents. This solved two major problems with the pLSI model :(1) the number of parameters in the model grows linearly with the size of the corpus, which lead to serious problems with overfitting, and (2) it is not clear how to assign probability to a document outside of the training set.
+
+The inclusion of a second probability component at the document level yielded a two-tiered model typical of the topic model framework. At the top, documents are a mixture of topics. At the bottom, topics are a mixture of words. Each topics is defined as a unique distribution of words.
+
+The introduction of mixture components in LDA led to problems in estimating the optimal model due to exponentially large potential topic values. This led to questions of what was the bast way to compute topic models.
+
+### 2.2.3 Computational Methods.
+
+In general there are two main approaches to for topic model inference: sampling methods (e.g., Gibbs Sampling) and variational inference. Sampling based algorithms simulate samples of the posterior to approximate the true posterior. Gibbs Sampling was introduced by [@Griffiths2004] and uses a Markov Chain Monte Carlo algorithm for inference of LDA.
+
+Another approach to approximating the posterior are variational inference methods that transform the problem into an optimization problem. Variational methods posit a parameterized family of distributions over the hidden structure and then find the member of that family that is closest to the posterior[@Blei2012]. [@Blei2003] introduced the Expectation Maximization (EM) algorithm for variational inference. EM uses Kullback-Leibler (KL) divergence to best minimize the estimated posterior to the true posterior.
+
+### 2.2.4 Extensions to LDA
+
+Since its introduction, LDA has been adapted and extended in many ways. LDA is defined by the statistical assumptions about the corpus. One active area of topic modelling research is how to relax and extend these assumptions to uncover more sophisticated structure in the texts[@Blei2012].
+
+### 2.2.5 The correlated topic model
+
+One limitation of LDA is that it fails to directly model correlation between the occurrence of topics[@Blei]. This limitation stems from the use of the Dirichlet distribution to model the variability among the topic proportions. It is natural to expect the occurrence of latent topics in most corpora will be highly correlated.
+
+In the correlated topic model (CTM) [@Blei2007] topic proportions are modelled with an alternative, more flexible distribution that allows for covariance structure among the components. This gives a more realistic model of the topic structure where the presence of one latent topic may be correlated with another.
+
+The key to CTM is the logistic normal distribution that allows for a general pattern of variability between the components. The CTM is more expressive than LDA because the strong independence assumption imposed by the Dirichlet in LDA is not realistic when analyzing real document collections.
+
+### 2.2.6 The dynamic topic model
+
+LDA and CTM assume that words are exchangeable within each document. They further assume that documents are exchangeable within the corpus[@Blei], this assumption is inappropriate. This is especially true when examining documents that span a long period of time. 
+
+The dynamic topic model (DTM) [@Blei2006] captures the evolution of topics in a sequentially organized corpus of documents. In DTM, the data is dived by time slice, e.g., by year.
+
+### 2.2.7 Author-topic model
+
+[@Rosen-Zvi2012] extended LDA to include authorship information. Each author is associated with a multinomial distribution over topics and each topic is associated with a multinomial distribution over words. By modelling the interests of the authors, it can be established which topics the author writes about, which authors may have written a similar observed document and which authors produce similar work. Using LDA, the only way to analyze the impact of the author was post-hoc by examining how topics compare relative to author.
+
+### 2.2.8 Structural topic model
+
+The structural topic model[@Roberts2017] (STM) extends LDA by allowing users to include arbitrary metadata into the topic model. The goal of the STM is to discover topics and estimate their relationship to the document metadata. Output of the model can be used to conduct hypothesis testing about these relationships. The model also introduces enhancements to the computational methods in order to make the model feasible for modelling and evaluation.
+ 
+## 2.3 Empirical Review
+
+[@Blei2007] applied the correlated topic model (CTM) to science articles from the JSTOR archive published from 1990 - 1999. The dataset comprised of 57M words. Their motivation was the limitation with LDA which fails to directly model correlation between topics. In most science topics it is natural to expect that subsets of the underlying topics will be highly correlated. They showed that it gives a better fit than LDA, as measured by the accuracy of predictive distributions over held out documents.
+
+[@Rosen-Zvi2012] applied the author-topic model on the NIPS data set that contains papers from the NIPS conferences between 1987 and 1999. The conference is characterized by contributions from a number of different research communities in the general area of learning algorithms. They illustrated the top 10 words most likely associated with a topic and the top 10 authors most likely to have generated a word associated with the topic. They showed that for each topic, the top 10 most likely authors are well known authors in terms of NIPS papers written on those topics.
+
+[@Roberts2013] used the structural topic model (STM) to analyze open-ended survey responses. Open-ended surveys have traditionally been considered more difficult to analyze than their closed counterparts as human coding is not always used. They showed that the model has a number of advantages over using human coders. First, it allows the researcher to discover topics from the data rather than assume them. Second, the model allows analysts to study how prevalence and content of topics changes with information that is particular to each respondent e.g., background demographic data. 
+
+[@Bhattacharya2014] developed a mechanism to infer topics of interest of individual users of Twitter. They observed that Twitter users generally follow experts in various topics of interest in order to acquire information on those topics. They checked the users a user of interest was following and then identified topics of interest of those users. Intuitively, if a user subscribes to tweets form several experts on a perticular topic, the user is likely to be interested in that topic.
+
+[@Reich2015] analyzed the use of massive open online courses (MOOC) course feedback to scale open-ended course responses. The used the Structural Topic Model to map students' self-reported motivations, identify themes in discussion forums and uncover patterns of feedback in course evaluations.
+
+[@Lucas2015] apply topic modelling to different types of documents such as fatwas and social media posts in order to facilitate comparison between countries.
+
+[@Sokolova2016] performed topic modelling and event identification from Twitter data. They worked on four datasets collected by the Umati project through Twitter's streaming API:
+* The Gikomba Twitter data mainly covering a bombing incident in Nairobi's Gikomba market. The dataset had 482 tweets.
+* The Mandera Twitter data which contained tweets on tribal clashes in Mandera town in Kenya. The data had 915 tweets in total.
+* The Makaburi dataset containing 20642 tweets. In those tweets, people were talking about the violent death of a controversial Muslim cleric, Sheikh Makaburi.
+* The mpeketoni dataset containing 106348 tweets. In those tweets people discuss a terrorist attack that happened in Mpeketoni, a town in the coastal region of Kenya.
+They applied LDA for topic modelling after the initial steps of data pre-processing. They then analyzed the topics manually and by using topic coherence analysis. Topic coherence measures each topic by scoring it based on calculating the degree of semantic similarity between the words in the topic.
+
+## 2.4 Conceptual Framework
+
+As guided by the literature review, the following conceptual framework was developed. It shows how the Twitter corpus contructed from a trending topic will be used to derive topics users are discussing.
+
+![Conceptual Framework \label{figurelabel}](Conceptual Framework.png)
+
+# CHAPTER THREE
+# RESEARCH METHODOLOGY
+
+## 3.1 Introduction
+
+The chapter will look at the research methods that will be employed in the study in order to achieve the objectives of the study. This chapter covers the research design to be adopted, population of study, sample size and sampling technique, data collection instrument, data collection procedures and data analysis methods.
+
+## 3.2 Research Design
+
+Research design is the general structure within which the research will be conducted. It involves identifying the source and method of obtaining the relevant data and methods for analyzing the data. Data for this research will be obtained from the Twitter search API^2^.[Twitter API](https://developer.twitter.com/). The API returns a collection of relevant Tweets matching the specified query. Not all tweets matching a specified query are made available via the Search API. The search will include only Tweets in English and will exempt retweets.
+
+![Research Design \label{figurelabel}](Research design.png)
+
+Data will be collected via the Twitter API  and stored in a MySQL database. Common text preprocessing methods will then be applied to the datasets. Once all preprocessing is completed, the remaining terms will be used to construct a document-term matrix (DTM). A DTM is a matrix where each row represents a document and each column represents a unique word. Following the “bag-of-words” assumption, the DTM format preserves information about how many times each word appears in a document while discarding information about the word order. Automated content techniques such as LDA or STM can then be applied to this matrix to learn the topics.
+
+## 3.3 Data preprocessing
+Twitter data is considered to be more challenging than other social media data due to character limit, misspellings and slang[@Eisenstein2013]. In this study, Twitter specific text preprocessing will be perfomed. This will include removal of Twitter-specific features like emoticons, hashtags, hyperlinks, user mentions, acronyms and slang.
+
+Other common text pre-processing procedures that will be perfomed include stop word removal, stemming, lemmatization, Tokenization and converting to lowercase.
+
+### 3.3.1 Stopword Removal
+
+This involves removing frequently occuring function words such as "and" and "the" to aid in model perfomance and interpratation. These words do not contribute to the meaning of the document. The most common way to remove them is to use a fixed list. Such lists are available in many languages and typically take care of most stopwords.
+
+### 3.3.2 Stemming and Lemmatization
+
+Stemming removes the endings of conjugated verbs and prulal nouns leaving just the "stem", which is common to all forms of the word. Lemmatization is a more complicated algorithm that identifies the origin of the word, only returning the lemma, or common form of the word.
+
+### 3.3.3 Tokenization
+
+Tokenization is the process of breaking a string of text into its consituent words. For English, whitespace and punctuation are usually used to detect word boundaries. Tokenization is the first step before creating a document term matrix.
+
+### 3.3.4 Converting to Lowercase
+
+For a particular concept there can be many character strings representing it depending on the case. For example, "Topic", "TOPIC" and "topic" refer to the same underlying concept. Converting to lowercase will convert them to the same word for purposes of topic modelling.
+
+## 3.4 Choosing Parameters
+
+After data pre-processing and creation of the document-term matrix, there are a number of parameters the researcher needs to choose before running the model. The number of topics (K) needs to be specified, which indicates how many topics the model should classify the words in the documents into[@Jacobi2016]. There is no default value for this parameter. The goal is to describe the documents with fewer topics than are actually present but with as little loss to relevant information as possible.
+
+A second parameter is the *alpha* hyperparameter, which affects how many parameters a document can contain. A common default value for alpha is 50 divided by the number of topics. Essentially, a lower alpha leads to fewer topics within the documents. 
+
+## 3.5 Data Analysis
+
+The data will be analyzed using the R language. R has many open source implementations for topic modelling. In this case I will use the stm R package[@Roberts2017]. The choice of this package is informed by the fact that it allows modelling of arbitrally document metadata and provides a statistical-based framework for facilitating hypothesis testing.
+
+To use the package first users ingest the data and prepare it for analysis. Next a structural topic model is estimated. The package provides functions for evaluation, understanding and visualization of the results, as shown in the diagram below.
+
+![stm R \label{figurelabel}](STM.png)
+
+## 3.6 Model Evaluation
+
+The results of the topic model will be evaluated using perplexity and manual analysis of each topic. Manual analysis will be done by examining each topic and the top words closely. Perplexity will also be used to evaluate the topic model. Perplexity can be considered as a measurement of how well a probability distribution predicts a sample. If a topic model has low perplexity, then it is considered more generalized, compared to the one that has high perplexity.
+
+# REFRENCES
+
+Manna, S., & Phongpanangam, O. (2018). Exploring Topic Models on Short Texts: A Case Study with Crisis Data. 2018 Second IEEE International Conference on Robotic Computing (IRC), 377-382.
